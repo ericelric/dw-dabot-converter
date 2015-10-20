@@ -11,25 +11,38 @@ function checkEmpty() {
 }
 
 function translateURL() {
-	var input = document.getElementById("inputTxt").value;	
-	var place = "\\";
+	var input =  document.getElementById("inputTxt").value;
+    var place = "\\";
 	var replace = "/";
-	var seed = "DIY";
-	var prefix = "/Volumes/webdav.hidrive.strato.com/public/";
-	
+	var seed1 = "DIY";
+	var seed2 = "192.168.9.5";
+	var prefix1 = "/Volumes/webdav.hidrive.strato.com/public/";
+	var prefix2 = "/Volumes/";
+
 	var	position = input.indexOf(place, 0);
 	while (position >= 0) {
 		input = input.substring(0, position) + replace + input.substring(position + place.length);
 		position = input.indexOf(place, position + replace.length);
 	}
-	
-	var n = input.indexOf(seed, 0);
+
+	var n = input.indexOf(seed1, 0);
+	var m = input.indexOf(seed2, 0);
+
 	if (n > 0) {
 		input = input.slice(n);
+		document.getElementById("output").innerHTML = prefix1 + input;
+		selectText("output");
 	}
-	
-    document.getElementById("output").innerHTML = prefix + input;
-    selectText('output');
+
+	else if (m > 0) {
+		input = input.slice(m + 12);
+		document.getElementById("output").innerHTML = prefix2 + input;
+		selectText("output");
+	}
+	else {
+		document.getElementById("output").innerHTML = "Sorry, I can't compute your link.";
+	}
+
 }
 
 function selectText(element) {
@@ -42,7 +55,7 @@ function selectText(element) {
         range.select();
     } else if (window.getSelection) { // moz, opera, webkit
         var selection = window.getSelection();            
-        var range = doc.createRange();
+		range = doc.createRange();
         range.selectNodeContents(text);
         selection.removeAllRanges();
         selection.addRange(range);
