@@ -1,3 +1,5 @@
+window.onload = document.getElementById('inputTxt').focus();
+
 function checkEmpty() {
 	var input = document.getElementById("inputTxt").value;
 	if (input =="") {
