@@ -95,6 +95,7 @@ a:hover, a:visited, a:link, a:active {
 	position: relative;
 	margin:0 auto;
 	left: .5em;
+	z-index: 10;
 }
 
 
@@ -111,6 +112,7 @@ a:hover, a:visited, a:link, a:active {
 	border-style: solid;
 	border-width: .14em;
 	border-color: #fff;
+	z-index: 99;
 }
 
 
